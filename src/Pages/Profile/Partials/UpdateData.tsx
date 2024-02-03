@@ -110,7 +110,7 @@ export default function UpdateData(): React.ReactElement
             inputNameRef.current.value = user?.name ?? '';
             inputEmailRef.current.value = user?.email ?? '';
         }
-    }, [])
+    })
     
     return (
         <div className="w-full flex flex-wrap justify-center bg-white rounded-md shadow p-3">
