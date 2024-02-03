@@ -8,7 +8,6 @@ import { FaPen } from "react-icons/fa6";
 import Validator from "@/Helpers/Validator";
 import { UserInterface, UserModel } from "@/Context/UserContext";
 import Modal, {ModalHeader} from "@/Components/Modal";
-import { FaTriangleExclamation } from "react-icons/fa6";
 
 export default function UpdateData(): React.ReactElement
 {
@@ -30,6 +29,13 @@ export default function UpdateData(): React.ReactElement
             ...prevErrors,
             [input]: message
         }));
+    }
+
+    function clearAllErrors()
+    {
+        for(let error in errors) {
+            defineError(error, '')
+        }
     }
 
     function validateForm({ name, email }: { name:string|undefined, email:string|undefined })
@@ -67,13 +73,6 @@ export default function UpdateData(): React.ReactElement
 
     function openModal(): void
     {
-        let data = {
-            profile: thumb ?? user?.profile,
-            name: inputNameRef.current?.value ?? user?.name,
-            email: inputEmailRef.current?.value ?? user?.email,
-            password: inputPasswordRef.current?.value ?? ''
-        }
-        if(!validateForm(data)) return;
         setState(true);
     }
 
@@ -81,6 +80,7 @@ export default function UpdateData(): React.ReactElement
     {
         setMessageError('');
         setMessageSuccess('');
+        clearAllErrors();
         setState(false);
     }
 
@@ -92,9 +92,17 @@ export default function UpdateData(): React.ReactElement
             email: inputEmailRef.current?.value ?? user?.email,
             password: inputPasswordRef.current?.value ?? ''
         }
+        if(!validateForm(data)) return;
+
         authContext?.updateAccount(data as UserInterface)
-            .then(message => setMessageSuccess(message))
-            .catch(e => setMessageError(e.message))
+            .then(message => {
+                setMessageError('');
+                setMessageSuccess(message);
+            })
+            .catch(e => {
+                setMessageSuccess(''); 
+                setMessageError(e.message)
+            })
     }
 
     useEffect(() => {
@@ -112,15 +120,23 @@ export default function UpdateData(): React.ReactElement
                     <Alert type="danger" message={messageError}></Alert>
                     <Alert type="success" message={messageSuccess}></Alert>
 
-                    <div className="flex flex-col w-full bg-yellow-300 rounded p-3"> 
-                        <div className="flex items-center">
-                            <FaTriangleExclamation></FaTriangleExclamation>
-                            <span className="font-bold">Warning!</span>
-                        </div>
-                        <span className="text-wrap text-ellipsis overflow-hidden">
-                            For your security, you must enter your password to carry out this procedure.
-                        </span>
-                    </div>            
+                    <div className="w-full bg-neutral-300 p-3 rounded-md">
+                        <InputContainer title='thumb' id='profile' error={errors.profile}>
+                            <InputImage 
+                                id="profile" 
+                                className={{img:'w-20 h-20'}} 
+                                typeReturn={'base64'} 
+                                defaultImage={thumb}
+                                onChange={(base64:any) => setThumb(base64)} 
+                            />    
+                        </InputContainer>
+                        <InputContainer id="name" title="name" error={errors.name}>
+                            <input className={defaultInputStyle} ref={inputNameRef} id="name"/>
+                        </InputContainer>
+                        <InputContainer id="email" title="Email" error={errors.email}>
+                            <input className={defaultInputStyle} ref={inputEmailRef} id="email"/>
+                        </InputContainer>
+                    </div>           
                 </div>
                 <div className="flex gap-1 p-3">
                     <InputContainer id="password" title="password">
@@ -136,23 +152,7 @@ export default function UpdateData(): React.ReactElement
             </Modal>
             <div className="w-full mb-1">
                 <h1 className="text-xl">Update account data</h1>
-            </div>
-            <div className="w-full lg:w-[50%] bg-neutral-300 p-3 rounded-md">
-                <InputContainer title='thumb' id='profile' error={errors.profile}>
-                    <InputImage 
-                        id="profile" 
-                        className={{img:'w-20 h-20'}} 
-                        typeReturn={'base64'} 
-                        defaultImage={thumb}
-                        onChange={(base64:any) => setThumb(base64)} 
-                    />    
-                </InputContainer>
-                <InputContainer id="name" title="name" error={errors.name}>
-                    <input className={defaultInputStyle} ref={inputNameRef} id="name"/>
-                </InputContainer>
-                <InputContainer id="email" title="Email" error={errors.email}>
-                    <input className={defaultInputStyle} ref={inputEmailRef} id="email"/>
-                </InputContainer>
+                <span>Update your accounts profile information.</span>
             </div>
             <div className="w-full flex justify-end gap-1 mt-3">
                 <Button type='warning' className="min-w-[90px] h-[34px] p-3 gap-1" onClick={openModal}>
