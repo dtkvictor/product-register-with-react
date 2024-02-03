@@ -14,7 +14,7 @@ export default function Home(): React.ReactElement
                         <Link to='/login'>
                             <Button type="primary" className="p-3 font-bold">Sing in</Button>
                         </Link>
-                        <Link to='/products'>
+                        <Link to='/product'>
                             <Button type="dark" className="p-3 font-bold">View Products</Button>
                         </Link>
                     </div>
@@ -27,7 +27,7 @@ export default function Home(): React.ReactElement
                             <Link to='/login'>
                                 <Button type="primary" className="p-5 font-bold text-xl">Sing in</Button>
                             </Link>
-                            <Link to='/products'>
+                            <Link to='/product'>
                                 <Button type="dark" className="p-5 font-bold text-xl">View Products</Button>
                             </Link>
                         </div>
