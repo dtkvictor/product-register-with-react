@@ -27,7 +27,7 @@ export default function DeleteAccount(): React.ReactElement {
     }
 
     return (        
-        <div className="w-full flex justify-between items-center bg-white rounded-md shadow p-3">
+        <div className="w-full flex flex-wrap justify-center bg-white rounded-md shadow p-3">
             <Modal isOpen={state}>
                 <ModalHeader title="Delete Account" closeModal={() => setState(false)}/>            
                 <div className="p-3">
@@ -38,7 +38,7 @@ export default function DeleteAccount(): React.ReactElement {
                             <span className="font-bold">Warning!</span>
                         </div>
                         <span className="text-wrap text-ellipsis overflow-hidden">
-                            Do you really want to delete the a account: {upper(user?.name)}? Once this action is done, it will not be undone.
+                            Hello, {upper(user?.name)}. Do you really want to delete your account? This action cannot be undone.
                         </span>
                     </div>            
                 </div>
@@ -54,11 +54,16 @@ export default function DeleteAccount(): React.ReactElement {
                     </InputContainer>
                 </div>
             </Modal>
-            <h1 className="text-xl">Delete Account</h1>
-            <Button type="danger" className="min-w-[90px] h-[34px] p-3 gap-1" onClick={() => setState(true)}>
-                <span>Delete</span>    
-                <FaTrashCan></FaTrashCan>                
-            </Button>
+            <div className="w-full mb-1">
+                <h1 className="text-xl">Delete Account</h1>
+                <span>Delete your account permanently</span>
+            </div>
+            <div className="w-full flex justify-end gap-1 mt-3">
+                <Button type="danger" className="min-w-[90px] h-[34px] p-3 gap-1" onClick={() => setState(true)}>
+                    <span>Delete</span>    
+                    <FaTrashCan></FaTrashCan>                
+                </Button>
+            </div>
         </div>
     );
 }
