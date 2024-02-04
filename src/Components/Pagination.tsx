@@ -2,13 +2,11 @@ import { useNavigate } from "react-router-dom";
 import Button from "./Button";
 
 type PaginationProps = {
-    firstPage: number,
-    lastPage: number,
     currentPage: number,
     totalPage: number,
 }
 
-export default function Pagination({ firstPage, lastPage, currentPage, totalPage }: PaginationProps) {
+export default function Pagination({ currentPage, totalPage }: PaginationProps) {
 
     const links:React.ReactElement[] = [];
     const pageRangeDisplayed = 5;

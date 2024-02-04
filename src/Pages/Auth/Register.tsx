@@ -2,7 +2,7 @@ import DefaultLayout from "@/Layouts/DefaultLayout"
 import AuthContainer from "./Partials/AuthContainer"
 import InputContainer, { defaultInputStyle } from "@/Components/InputContainer"
 import InputImage from "@/Components/Form/InputImage"
-import { useEffect, useRef, useState } from "react"
+import { useRef, useState } from "react"
 import Button from "@/Components/Button"
 import { Link } from "react-router-dom"
 import Validator from "@/Helpers/Validator"
@@ -103,10 +103,8 @@ export default function Login(): React.ReactElement
             created_at: null,
             updated_at: null,
         }
-
-        console.log(data)
         
-        /*if(!validateForm(data)) return;
+        if(!validateForm(data)) return;
         
         let { passwordConfirm, ...userData} = data;
 
@@ -114,8 +112,7 @@ export default function Login(): React.ReactElement
             .then(() => {
                 authContext?.attempt(userData).then(() => navigate('/'))
             })
-            .catch(() => defineError('form', 'Unable to register this user'))        
-        */
+            .catch(() => defineError('form', 'Unable to register this user'))
     }
 
     return (

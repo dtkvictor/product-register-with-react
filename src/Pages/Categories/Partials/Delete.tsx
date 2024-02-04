@@ -1,7 +1,7 @@
 import Modal, { ModalHeader } from "@/Components/Modal";
 import { CategoryInterface } from "@/Context/CategoryContext";
 import { uppercaseFirstLetter as upper } from '@/Helpers/StringFunctions';
-import { FaTriangleExclamation, FaTrashCan, FaS } from "react-icons/fa6";
+import { FaTriangleExclamation, FaTrashCan } from "react-icons/fa6";
 import Button from "@/Components/Button";
 import { useContext, useEffect, useState } from "react";
 import { CategoryContext } from "@/Context/CategoryContext";

@@ -1,4 +1,4 @@
-import { FaTrashCan, FaPen, FaEye } from "react-icons/fa6";
+import { FaTrashCan, FaPen } from "react-icons/fa6";
 import { uppercaseFirstLetter } from "@/Helpers/StringFunctions";
 import { ProductInterface } from "@/Context/ProdutoContext";
 import Button from "@/Components/Button";
@@ -10,7 +10,7 @@ type CardProps = {
 }
 
 export default function Card({ product, productUpdate, productDelete }: CardProps) {
-    const { id, thumb, name, slug, price, category } = product;
+    const { id, thumb, name, price, category } = product;
     
     return (
         <div className="bg-white rounded-md shadow w-full md:w-[calc(50%_-_1.25rem)] lg:w-[calc(25%_-_1.25rem)] p-2" id={`product-${id}`}>

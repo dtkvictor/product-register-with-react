@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Routes from '@/Router/Routes';
@@ -14,4 +14,4 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
       <RouterProvider router={router}/>
     </AuthContext.Provider>    
   </React.StrictMode>
-)
+);

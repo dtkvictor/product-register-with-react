@@ -86,8 +86,6 @@ export default function Products(): React.ReactElement {
                     />
 
                     <Pagination 
-                        firstPage={ products.meta.firstPage ?? 0 }
-                        lastPage={ products.meta.lastPage ?? 0 }
                         currentPage={ products.meta.currentPage ?? 0 }
                         totalPage={ products.meta.totalPage ?? 0 }
                     />

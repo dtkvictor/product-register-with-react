@@ -1,5 +1,4 @@
 import { uppercaseFirstLetter } from "@/Helpers/StringFunctions";
-import { useEffect } from "react";
 
 export const defaultInputStyle:string = `
     p-1

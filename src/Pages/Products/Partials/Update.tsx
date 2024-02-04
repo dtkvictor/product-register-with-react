@@ -16,12 +16,6 @@ export default function Update({ product, clearProduct }: UpdateProps): React.Re
     const authContext = useContext(AuthContext);
     const navigate = useNavigate();
     const isOpen = product ? true : false;
-    const context = useContext(ProductContext);
-
-    function submitHandler(product: ProductInterface): void 
-    {
-        context?.update(product);
-    }
 
     useEffect(() => { 
         if(isOpen && !authContext?.check()) navigate('/login');

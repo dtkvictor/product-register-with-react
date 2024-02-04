@@ -84,8 +84,6 @@ export default function Categories(): React.ReactElement {
                         handlerDelete={ setDeleteCategory }
                     />
                     <Pagination 
-                        firstPage={ categories.meta.firstPage ?? 0 }
-                        lastPage={ categories.meta.lastPage ?? 0 }
                         currentPage={ categories.meta.currentPage ?? 0 }
                         totalPage={ categories.meta.totalPage ?? 0 }
                     />
