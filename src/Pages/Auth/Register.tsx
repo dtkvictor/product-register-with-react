@@ -110,7 +110,7 @@ export default function Login(): React.ReactElement
 
         authContext?.register({...userData})
             .then(() => {
-                authContext?.attempt(userData).then(() => navigate('/'))
+                authContext?.attempt(userData).then(() => navigate('/profile'))
             })
             .catch(() => defineError('form', 'Unable to register this user'))
     }
