@@ -3,7 +3,6 @@ import { ProductInterface } from "@/Context/ProdutoContext";
 import Form from '../Partials/Form';
 import { FaPen } from 'react-icons/fa6';
 import { useContext, useEffect } from "react";
-import { ProductContext } from "@/Context/ProdutoContext";
 import { AuthContext } from "@/Context/AuthContext";
 import { useNavigate } from "react-router-dom";
 
