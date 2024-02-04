@@ -111,8 +111,8 @@ export class Auth
         if(this.current?.password != (await sha1(password))) {
             throw new Error('Invalid password!');
         }
-
         (new UserModel()).delete(this.user()?.id ?? 0);
+        this.current = undefined;
     }
 
     private getSession(): SessionInterface|null

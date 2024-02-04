@@ -19,8 +19,7 @@ export default function DeleteAccount(): React.ReactElement {
 
     function deleteAccount(): void
     {
-        if(!(inputPasswordRef.current && inputPasswordRef.current.value)){
-            console.log('error')
+        if(!(inputPasswordRef.current && inputPasswordRef.current.value)) {
             return;
         }
 
