@@ -15,9 +15,9 @@ export default function UpdatePassword(): React.ReactElement
     const [messageSuccess, setMessageSuccess] = useState<string>('');
     const [messageError, setMessageError] = useState<string>('');
 
-    const inputPasswordRef = useRef<HTMLInputElement>(null);
-    const inputPasswordConfirmRef = useRef<HTMLInputElement>(null);
-    const inputCurrentPasswordRef = useRef<HTMLInputElement>(null);
+    const inputOldPasswordRef = useRef<HTMLInputElement>(null);
+    const inputNewPasswordRef = useRef<HTMLInputElement>(null);
+    const inputComfirmPasswordRef = useRef<HTMLInputElement>(null);
     
     function defineError(input:string, message:string): void
     {
@@ -82,9 +82,9 @@ export default function UpdatePassword(): React.ReactElement
     function updatePassword(): void
     {
         let data = {
-            oldPassword: inputCurrentPasswordRef.current?.value ?? '',
-            newPassword: inputPasswordRef.current?.value ?? '',
-            confirmPassword: inputPasswordConfirmRef.current?.value ?? ''
+            oldPassword: inputOldPasswordRef.current?.value ?? '',
+            newPassword: inputNewPasswordRef.current?.value ?? '',
+            confirmPassword: inputComfirmPasswordRef.current?.value ?? ''
         }
         
         if(!validateForm(data)) return;
@@ -98,6 +98,11 @@ export default function UpdatePassword(): React.ReactElement
                 setMessageSuccess('') 
                 setMessageError(e.message)
             })
+            .finally(() => {
+                if(inputOldPasswordRef.current?.value) {
+                    inputOldPasswordRef.current.value = ''
+                }
+            })
     }
     
     return (
@@ -110,17 +115,17 @@ export default function UpdatePassword(): React.ReactElement
 
                     <div className="w-full bg-neutral-300 p-3 rounded-md">
                         <InputContainer id="password" title="Password" error={errors.password}>
-                            <input className={defaultInputStyle} ref={inputPasswordRef} id="password" type="password"/>
+                            <input className={defaultInputStyle} ref={inputNewPasswordRef} id="password" type="password"/>
                         </InputContainer>
                         <InputContainer id="password_confirm" title="Password Confirm" error={errors.passwordConfirm}>
-                            <input className={defaultInputStyle} ref={inputPasswordConfirmRef} id="password_confirm" type="password"/>
+                            <input className={defaultInputStyle} ref={inputComfirmPasswordRef} id="password_confirm" type="password"/>
                         </InputContainer>
                     </div>          
                 </div>
                 <div className="flex gap-1 p-3">
                     <InputContainer id="password" title="password">
                         <div className="w-full flex gap-1">
-                            <input className={defaultInputStyle + ' w-full'} ref={inputCurrentPasswordRef} type="password" id="password" placeholder="Your password..."/>
+                            <input className={defaultInputStyle + ' w-full'} ref={inputOldPasswordRef} type="password" id="password" placeholder="Your password..."/>
                             <Button type="warning" className="h-[34px] p-3 gap-1" onClick={updatePassword}>
                                 <span>Update</span>    
                                 <FaPen></FaPen>                

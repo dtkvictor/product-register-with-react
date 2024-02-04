@@ -7,7 +7,7 @@ type Component = {
 export default function DefaultLayout({ children }: Component) {
     return (
         <>
-            <header className="w-100 h-16 bg-rose-400 flex justify-between items-center p-3">
+            <header className="w-100 h-16 bg-rose-400 flex justify-between items-center p-3 relative z-50">
                 <span className="text-white text-2xl md-text-3xl font-bold">Register Products</span>                
                 <Navbar></Navbar>
             </header>   

@@ -19,7 +19,10 @@ export default function DeleteAccount(): React.ReactElement {
 
     function deleteAccount(): void
     {
-        if(!(inputPasswordRef.current && inputPasswordRef.current.value)) return;
+        if(!(inputPasswordRef.current && inputPasswordRef.current.value)){
+            console.log('error')
+            return;
+        }
 
         authContext?.deleteAccount(inputPasswordRef.current.value)
             .then(() => navigate('/login'))

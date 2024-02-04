@@ -1,4 +1,4 @@
-import { AuthContext, AuthContextProps } from "@/Context/AuthContext";
+import { AuthContext } from "@/Context/AuthContext";
 import { ReactElement, useContext, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 
@@ -12,7 +12,7 @@ export default function({title, className}:{title?:string, className?:string}): 
         if(imgRef.current) {
             imgRef.current.src = authContext?.user()?.profile as string;
         }
-    }, [])
+    })
 
     return (
         <div className={css}>

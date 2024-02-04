@@ -9,7 +9,7 @@ import Validator from "@/Helpers/Validator";
 import { UserInterface, UserModel } from "@/Context/UserContext";
 import Modal, {ModalHeader} from "@/Components/Modal";
 
-export default function UpdateData(): React.ReactElement
+export default function UpdateData({reload}: {reload: VoidFunction}): React.ReactElement
 {
     const authContext = useContext(AuthContext);
     const user = authContext?.user();
@@ -102,6 +102,12 @@ export default function UpdateData(): React.ReactElement
             .catch(e => {
                 setMessageSuccess(''); 
                 setMessageError(e.message)
+            })
+            .finally(() => {
+                if(inputPasswordRef.current?.value) {
+                    inputPasswordRef.current.value = ''
+                }
+                reload();
             })
     }
 
