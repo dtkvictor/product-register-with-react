@@ -19,12 +19,14 @@ type CardElement = {
     handlerDelete: (product: ProductInterface) => void,
 }
 
-function CardElement({products, categories, handlerUpdate, handlerDelete}: CardElement): React.ReactElement|ReactElement[] {
+function CardElement({products, categories, handlerCreate, handlerUpdate, handlerDelete}: CardElement): React.ReactElement|ReactElement[] {
 
     if(!products || products.length < 1) return (
         <h1 className='text-xl'>
             <span>No products found, do you want to </span>
-            <span className='text-blue-500'>create a new product?</span>
+            <span className='text-blue-500 cursor-pointer' onClick={handlerCreate}>
+                create a new product?
+            </span>
         </h1>
     );
         
